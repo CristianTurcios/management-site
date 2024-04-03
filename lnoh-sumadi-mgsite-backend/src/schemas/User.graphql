@@ -1,0 +1,19 @@
+type User {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    email: String!
+    role: JSON!
+    createdAt: Date
+    updatedAt: Date
+    acceptTerms: Boolean!
+    isVerified: Boolean!
+    status: Boolean!
+    imageUrl: String
+}
+
+type UserPaginated {
+    items: [User]
+    meta: JSON
+    links: JSON
+}

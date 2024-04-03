@@ -1,0 +1,35 @@
+type Account {
+    id: ID!
+    isEnabled: Boolean!
+    institution: JSON!
+    services: JSON!
+    courses: [String]
+    updatedAt: Date
+    createdAt: Date
+    proctorTimeZone: String!
+    createdBy: String
+    updatedBy: String
+}
+
+type AccountPaginated {
+    docs: [Account],
+    total: Int!
+    limit: Int!
+    page: Int!
+    pages: Int!
+}
+
+type AccountsByRegion {
+    region: String
+    count: Float
+}
+
+type Timezone {
+    value: String
+    label: String
+}
+
+type CollectionId {
+    value: String
+    label: String
+}

@@ -1,0 +1,38 @@
+# import { User, UserPaginated } from "User.graphql"
+# import { Role } from "Role.graphql"
+# import { Account, AccountPaginated } from "Account.graphql"
+
+scalar JSON
+scalar Date
+scalar Any
+scalar Upload
+
+type Query {
+  User(id: String!): User
+  Users(page: Int, limit: Int, orderBy: String): UserPaginated
+  Account(id: String!): Account
+  Accounts(page: Int, limit: Int, byRegion: [String], byStatus: [String]) : AccountPaginated
+  LatestAccounts(limit: Int): AccountPaginated
+  Role(id: String!): Role
+  Roles: [Role]
+  generatePassword(passwordLength: Int!, upperCase: Boolean!, symbols: Boolean!, lowerCase: Boolean!, numbers: Boolean!, excludeSimilarCharacters: Boolean!): String
+  accountsByRegion: [AccountsByRegion]
+  Timezones: [Timezone]
+  CollectionsId: [CollectionId]
+}
+
+type Mutation {
+  postUser(firstName: String!, lastName: String!, email: String!, password: String!, confirmPassword: String!, acceptTerms: Boolean!, role: Int!, status: Boolean!, imageUrl: String): User
+  deleteUser(id: String!): User
+  updateUser(id: String!, email: String, firstName: String, lastName: String, role: Int, acceptTerms: Boolean, status: Boolean, imageUrl: String): User
+  changePassword(userId: String!, oldPassword: String!, newPassword: String!): User
+  changeUserImage(userId: String!, image: String!): User
+  #
+  postAccount(account: JSON!): Account
+  deleteAccount(id: String!): Account
+  updateAccount(id: String!, account: JSON!): Account
+  # 
+  postRole(role: String!): Role
+  deleteRole(id: String!): Role
+  updateRole(id: String!, role: String!): Role
+}
